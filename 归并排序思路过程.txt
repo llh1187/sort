@@ -1,0 +1,39 @@
+首先做到分隔 每隔一个单位长度的块进行归并排序
+
+要决定什么时候是边界，增量怎么解决
+
+先看看要写成什么样子
+left 代表 左边界 要小于等于数组长度（左块的起始值）
+middle 代表  中间值(其实就是右块的起始值)
+right 代表 右边界（右块的结束值+1）
+length 代表数组长度
+step 代表本次跨越的长度 不用increment以与希尔排序区别开来
+for(let step = 1; Math.pow(2,step) < N; step++){
+
+for(let left = 0; left <= length; left += step*2){
+	middle = (left+length) < N ? left + length : left;
+	right = (left+lenght*2) < N ? (left+lenght*2) : left;	
+}
+
+}
+现在要考虑边界情况 假如   0 1 2 3 4  多出了个4
+现在要处理一个问题 就是step会变的
+顺便把step的边界情况也处理好了~~~
+
+//temp是用来干什么的？？??
+封装好了一个合并用的函数: merge(arr,temp,left,middle,right)
+
+这个封装好的函数内部怎么排序的？？？temp应该就是用来存储的？
+
+这个merge数组其实就是将左到右进行合并  从小到大
+function merge( ){
+	left result = [];
+	while(left.length > 0 && right.length >0){
+		if(left[0] < right[0]){
+			result.push(left.shift());	
+		}else{
+			reesult.push(right.shift());
+		}	
+	}
+	return result.concat(left).concat(right);
+}
