@@ -26,7 +26,7 @@ function partition(arr,low,high){
 		
 		temp = arr[low];
 		arr[low] = arr[high];
-		arr[high] = arr[low];
+		arr[high] = temp;
 	}
 	return low;
 }
